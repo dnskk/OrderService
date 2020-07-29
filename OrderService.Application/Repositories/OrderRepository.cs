@@ -33,12 +33,14 @@ namespace OrderService.Application.Repositories
         public Order Add(Order newOrder)
         {
             ValidateOrder(newOrder, shouldCheckPostamatStatus: true);
+
             var id = 1;
             if (_orderDatabase.Orders.Count != 0)
             {
                 id = _orderDatabase.Orders.Max(p => p.Id) + 1;
             }
             newOrder.Id = id;
+            newOrder.Status = OrderStatus.Registered;
 
             _orderDatabase.Orders.Add(newOrder);
 
@@ -48,13 +50,17 @@ namespace OrderService.Application.Repositories
         /// <inheritdoc />
         public Order Update(Order updatedOrder)
         {
+            ValidateOrder(updatedOrder);
+
             var index = _orderDatabase.Orders.FindIndex(p => p.Id == updatedOrder.Id);
 
             if (index == -1)
             {
-                throw new ArgumentOutOfRangeException("Wrong order ID");
+                throw new ArgumentOutOfRangeException(nameof(updatedOrder.Id));
             }
 
+            updatedOrder.PostamatId = _orderDatabase.Orders[index].PostamatId;
+            updatedOrder.Status = _orderDatabase.Orders[index].Status;
             _orderDatabase.Orders[index] = updatedOrder;
 
             return updatedOrder;
@@ -67,7 +73,7 @@ namespace OrderService.Application.Repositories
 
             if (index == -1)
             {
-                throw new ArgumentOutOfRangeException("Wrong order ID");
+                throw new ArgumentOutOfRangeException(nameof(orderId));
             }
 
             _orderDatabase.Orders[index].Status = OrderStatus.Cancelled;

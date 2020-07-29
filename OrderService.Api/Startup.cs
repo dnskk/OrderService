@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OrderService.Application.Repositories;
+using OrderService.Database;
 
 namespace OrderService.Api
 {
@@ -19,6 +21,12 @@ namespace OrderService.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSingleton(PostamatDatabase.Instance);
+            services.AddSingleton(OrderDatabase.Instance);
+
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IPostamatRepository, PostamatRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
