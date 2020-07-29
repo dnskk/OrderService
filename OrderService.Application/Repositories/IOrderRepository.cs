@@ -17,7 +17,7 @@ namespace OrderService.Application.Repositories
         /// <summary>
         /// Create new order.
         /// </summary>
-        Order Create(Order newOrder);
+        Order Add(Order newOrder);
 
         /// <summary>
         /// Update order.
@@ -27,7 +27,7 @@ namespace OrderService.Application.Repositories
         /// <summary>
         /// Cancell order.
         /// </summary>
-        Order Cancell(int orderId);
+        Order Cancel(int orderId);
 
         /// <summary>
         /// Get order by ID asynchronously. 
@@ -37,7 +37,7 @@ namespace OrderService.Application.Repositories
         /// <summary>
         /// Create new order asynchronously.
         /// </summary>
-        Task<Order> CreateAsync(Order newOrder, CancellationToken token);
+        Task<Order> AddAsync(Order newOrder, CancellationToken token);
 
         /// <summary>
         /// Update order asynchronously.
@@ -47,7 +47,7 @@ namespace OrderService.Application.Repositories
         /// <summary>
         /// Cancell order asynchronously.
         /// </summary>
-        Task<Order> CancellAsync(int orderId, CancellationToken token);
+        Task<Order> CancelAsync(int orderId, CancellationToken token);
 
     }
 }

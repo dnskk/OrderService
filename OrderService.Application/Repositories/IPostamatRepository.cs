@@ -17,7 +17,7 @@ namespace OrderService.Application.Repositories
         /// <summary>
         /// Create new postamat.
         /// </summary>
-        Postamat Create(Postamat newPostamat);
+        Postamat Add(Postamat newPostamat);
 
         /// <summary>
         /// Update postamat.
@@ -37,7 +37,7 @@ namespace OrderService.Application.Repositories
         /// <summary>
         /// Create new postamat asynchronously.
         /// </summary>
-        Task<Postamat> CreateAsync(Postamat newPostamat, CancellationToken token);
+        Task<Postamat> AddAsync(Postamat newPostamat, CancellationToken token);
 
         /// <summary>
         /// Update postamat asynchronously.

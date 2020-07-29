@@ -33,7 +33,7 @@ namespace OrderService.Database
                 {
                     Id = i,
                     Address = $"Baker street 2{i}",
-                    IsWorking = i % 3 == 0
+                    IsWorking = i % 3 != 0
                 };
 
                 postamats.Add(postamat);

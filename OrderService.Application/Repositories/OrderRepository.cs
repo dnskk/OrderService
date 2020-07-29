@@ -30,11 +30,14 @@ namespace OrderService.Application.Repositories
         }
 
         /// <inheritdoc />
-        public Order Create(Order newOrder)
+        public Order Add(Order newOrder)
         {
             ValidateOrder(newOrder, shouldCheckPostamatStatus: true);
-
-            var id = _orderDatabase.Orders.Max(p => p.Id) + 1;
+            var id = 1;
+            if (_orderDatabase.Orders.Count != 0)
+            {
+                id = _orderDatabase.Orders.Max(p => p.Id) + 1;
+            }
             newOrder.Id = id;
 
             _orderDatabase.Orders.Add(newOrder);
@@ -58,7 +61,7 @@ namespace OrderService.Application.Repositories
         }
 
         /// <inheritdoc />
-        public Order Cancell(int orderId)
+        public Order Cancel(int orderId)
         {
             var index = _orderDatabase.Orders.FindIndex(p => p.Id == orderId);
 
@@ -79,9 +82,9 @@ namespace OrderService.Application.Repositories
         }
 
         /// <inheritdoc />
-        public Task<Order> CreateAsync(Order newOrder, CancellationToken token)
+        public Task<Order> AddAsync(Order newOrder, CancellationToken token)
         {
-            return Task.FromResult(Create(newOrder));
+            return Task.FromResult(Add(newOrder));
         }
 
         /// <inheritdoc />
@@ -91,27 +94,27 @@ namespace OrderService.Application.Repositories
         }
 
         /// <inheritdoc />
-        public Task<Order> CancellAsync(int orderId, CancellationToken token)
+        public Task<Order> CancelAsync(int orderId, CancellationToken token)
         {
-            return Task.FromResult(Cancell(orderId));
+            return Task.FromResult(Cancel(orderId));
         }
 
         private void ValidateOrder(Order order, bool shouldCheckPostamatStatus = false)
         {
             if (order.Price < 0)
             {
-                throw new ArgumentOutOfRangeException("Price cannot be less than 0");
+                throw new ArgumentOutOfRangeException(nameof(order.Price));
             }
 
             if (order.Products.Length > MaxNumberOfProducts)
             {
-                throw new ArgumentOutOfRangeException($"Number of products cannot be more than {MaxNumberOfProducts}");
+                throw new ArgumentOutOfRangeException(nameof(order.Products));
             }
 
             var postamat = _postamatRepository.Get(order.PostamatId);
             if (postamat == null)
             {
-                throw new ArgumentOutOfRangeException("Wrong postamat ID");
+                throw new ArgumentOutOfRangeException(nameof(order.PostamatId));
             }
 
             if (shouldCheckPostamatStatus && !postamat.IsWorking)

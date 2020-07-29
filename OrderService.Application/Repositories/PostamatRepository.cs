@@ -24,21 +24,21 @@ namespace OrderService.Application.Repositories
         }
 
         /// <inheritdoc />
-        public Postamat Create(Postamat newPostamat)
+        public Postamat Add(Postamat newPostamat)
         {
-            throw new NotImplementedException();
+            throw new Exception();
         }
 
         /// <inheritdoc />
         public Postamat Update(Postamat updatedPostamat)
         {
-            throw new NotImplementedException();
+            throw new Exception();
         }
 
         /// <inheritdoc />
         public Postamat Remove(int postamatId)
         {
-            throw new NotImplementedException();
+            throw new Exception();
         }
 
         /// <inheritdoc />
@@ -48,9 +48,9 @@ namespace OrderService.Application.Repositories
         }
 
         /// <inheritdoc />
-        public Task<Postamat> CreateAsync(Postamat newPostamat, CancellationToken token)
+        public Task<Postamat> AddAsync(Postamat newPostamat, CancellationToken token)
         {
-            return Task.FromResult(Create(newPostamat));
+            return Task.FromResult(Add(newPostamat));
         }
 
         /// <inheritdoc />

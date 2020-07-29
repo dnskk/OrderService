@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OrderService.Database\OrderService.Database.csproj" />
-    <ProjectReference Include="..\OrderService.Models\OrderService.Models.csproj" />
   </ItemGroup>
 
 </Project>
