@@ -46,7 +46,7 @@ namespace OrderService.Tests
             };
 
             repository.Add(order);
-            order = repository.Get(1);
+            order = repository.GetOrDefault(1);
             Assert.NotNull(order);
         }
 
@@ -66,10 +66,10 @@ namespace OrderService.Tests
             };
 
             repository.Add(order);
-            order = repository.Get(1);
+            order = repository.GetOrDefault(1);
             order.Price = 1000000;
             repository.Update(order);
-            order = repository.Get(1);
+            order = repository.GetOrDefault(1);
 
             Assert.Equal(1000000, order.Price);
         }
@@ -91,7 +91,7 @@ namespace OrderService.Tests
 
             repository.Add(order);
             repository.Cancel(1);
-            order = repository.Get(1);
+            order = repository.GetOrDefault(1);
             Assert.Equal(OrderStatus.Cancelled, order.Status);
         }
 

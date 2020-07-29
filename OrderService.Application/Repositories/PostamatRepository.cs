@@ -18,7 +18,7 @@ namespace OrderService.Application.Repositories
         }
 
         /// <inheritdoc />
-        public Postamat Get(int postamatId)
+        public Postamat GetOrDefault(int postamatId)
         {
             return _postamatDatabase.Postamats.FirstOrDefault(p => p.Id == postamatId);
         }
@@ -42,9 +42,9 @@ namespace OrderService.Application.Repositories
         }
 
         /// <inheritdoc />
-        public Task<Postamat> GetAsync(int postamatId, CancellationToken token)
+        public Task<Postamat> GetOrDefaultAsync(int postamatId, CancellationToken token)
         {
-            return Task.FromResult(Get(postamatId));
+            return Task.FromResult(GetOrDefault(postamatId));
         }
 
         /// <inheritdoc />

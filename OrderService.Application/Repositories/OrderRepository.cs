@@ -11,7 +11,7 @@ namespace OrderService.Application.Repositories
     /// <inheritdoc cref="IOrderRepository"/>
     public class OrderRepository : IOrderRepository
     {
-        private const string TelephoneNumberPattern = @"\+7\d{3}-\d{3}-\d\d-\d\d$";
+        private const string TelephoneNumberPattern = @"^\+7\d{3}-\d{3}-\d{2}-\d{2}$";
         private const int MaxNumberOfProducts = 10;
 
         private readonly IPostamatRepository _postamatRepository;
@@ -24,7 +24,7 @@ namespace OrderService.Application.Repositories
         }
 
         /// <inheritdoc />
-        public Order Get(int orderId)
+        public Order GetOrDefault(int orderId)
         {
             return _orderDatabase.Orders.FirstOrDefault(p => p.Id == orderId);
         }
@@ -82,9 +82,9 @@ namespace OrderService.Application.Repositories
         }
 
         /// <inheritdoc />
-        public Task<Order> GetAsync(int orderId, CancellationToken token)
+        public Task<Order> GetOrDefaultAsync(int orderId, CancellationToken token)
         {
-            return Task.FromResult(Get(orderId));
+            return Task.FromResult(GetOrDefault(orderId));
         }
 
         /// <inheritdoc />
@@ -117,7 +117,7 @@ namespace OrderService.Application.Repositories
                 throw new ArgumentOutOfRangeException(nameof(order.Products));
             }
 
-            var postamat = _postamatRepository.Get(order.PostamatId);
+            var postamat = _postamatRepository.GetOrDefault(order.PostamatId);
             if (postamat == null)
             {
                 throw new ArgumentOutOfRangeException(nameof(order.PostamatId));

@@ -13,7 +13,7 @@ namespace OrderService.Tests
         {
             var repository = GetPostamatRepository();
 
-            var postamat = repository.Get(1);
+            var postamat = repository.GetOrDefault(1);
 
             Assert.NotNull(postamat);
         }
@@ -37,7 +37,7 @@ namespace OrderService.Tests
         {
             var repository = GetPostamatRepository();
 
-            var postamat = repository.Get(1);
+            var postamat = repository.GetOrDefault(1);
             postamat.Address = "Lenina 10";
 
             Assert.Throws<Exception>(() => repository.Update(postamat));
@@ -48,7 +48,7 @@ namespace OrderService.Tests
         {
             var repository = GetPostamatRepository();
 
-            var postamat = repository.Get(1);
+            var postamat = repository.GetOrDefault(1);
 
             Assert.Throws<Exception>(() => repository.Remove(postamat.Id));
         }

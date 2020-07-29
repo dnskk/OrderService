@@ -22,7 +22,7 @@ namespace OrderService.Api.Controllers
         [Route("{postamatId}")]
         public ActionResult<Postamat> Get(int postamatId)
         {
-            var postamat = _postamatRepository.Get(postamatId);
+            var postamat = _postamatRepository.GetOrDefault(postamatId);
             if (postamat == null)
             {
                 return NotFound();

@@ -12,7 +12,7 @@ namespace OrderService.Application.Repositories
         /// <summary>
         /// Get postamat by ID. 
         /// </summary>
-        Postamat Get(int postamatId);
+        Postamat GetOrDefault(int postamatId);
 
         /// <summary>
         /// Create new postamat.
@@ -32,7 +32,7 @@ namespace OrderService.Application.Repositories
         /// <summary>
         /// Get postamat by ID asynchronously. 
         /// </summary>
-        Task<Postamat> GetAsync(int postamatId, CancellationToken token);
+        Task<Postamat> GetOrDefaultAsync(int postamatId, CancellationToken token);
 
         /// <summary>
         /// Create new postamat asynchronously.

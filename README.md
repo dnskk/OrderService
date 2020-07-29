@@ -8,7 +8,7 @@ This is an ASP.NET Core web-service for working with orders.
 
 ### Request
 
-`GET /Order/Get/{orderId}`
+`GET /Order/{orderId}`
 
     curl -i -H 'Accept: application/json' http://localhost:60402/Order/Get/1
 
@@ -25,7 +25,7 @@ This is an ASP.NET Core web-service for working with orders.
 
 ### Request
 
-`POST /Order/Add`
+`POST /Order`
 
 ### Response
 
@@ -40,7 +40,7 @@ This is an ASP.NET Core web-service for working with orders.
 
 ### Request
 
-`POST /Order/Update`
+`PUT /Order`
 
 ### Response
 
@@ -55,7 +55,7 @@ This is an ASP.NET Core web-service for working with orders.
 
 ### Request
 
-`POST /Order/Cancel/{orderId}`
+`DELETE /Order/{orderId}`
 
 ### Response
 

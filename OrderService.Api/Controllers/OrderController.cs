@@ -8,7 +8,7 @@ using OrderService.Models;
 namespace OrderService.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("[controller]")]
     public class OrderController : ControllerBase
     {
         private readonly IOrderRepository _orderRepository;
@@ -24,7 +24,7 @@ namespace OrderService.Api.Controllers
         [Route("{orderId}")]
         public ActionResult<Order> Get(int orderId)
         {
-            var order = _orderRepository.Get(orderId);
+            var order = _orderRepository.GetOrDefault(orderId);
             if (order == null)
             {
                 return NotFound();
@@ -59,7 +59,7 @@ namespace OrderService.Api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         public ActionResult<Order> Update(Order updatedOrder)
         {
             try
@@ -81,19 +81,19 @@ namespace OrderService.Api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpDelete]
         [Route("{orderId}")]
         public ActionResult<Order> Cancel(int orderId)
         {
-            var order = _orderRepository.Get(orderId);
-            if (order == null)
+            try
             {
-                return NotFound();
+                var order = _orderRepository.Cancel(orderId);
+                return order;
             }
-
-            order.Status = OrderStatus.Cancelled;
-            order = _orderRepository.Update(order);
-            return order;
+            catch (ArgumentOutOfRangeException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
