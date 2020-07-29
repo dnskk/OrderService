@@ -1,7 +1,7 @@
 ﻿namespace OrderService.Models
 {
     /// <summary>
-    /// Postamat (parcel locker).
+    /// Postamat (parcel locker) entity.
     /// </summary>
     public class Postamat
     {

@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PostamatService.Application.Repositories
+namespace OrderService.Application.Repositories
 {
     /// <summary>
     /// Repository to work with postamats.
@@ -25,9 +25,9 @@ namespace PostamatService.Application.Repositories
         Postamat Update(Postamat updatedPostamat);
 
         /// <summary>
-        /// Cancell postamat.
+        /// Remove postamat.
         /// </summary>
-        Postamat Cancell(int postamatId);
+        Postamat Remove(int postamatId);
 
         /// <summary>
         /// Get postamat by ID asynchronously. 
@@ -45,8 +45,8 @@ namespace PostamatService.Application.Repositories
         Task<Postamat> UpdateAsync(Postamat updatedPostamat, CancellationToken token);
 
         /// <summary>
-        /// Cancell postamat asynchronously.
+        /// Remove postamat asynchronously.
         /// </summary>
-        Task<Postamat> CancellAsync(int postamatId, CancellationToken token);
+        Task<Postamat> RemoveAsync(int postamatId, CancellationToken token);
     }
 }

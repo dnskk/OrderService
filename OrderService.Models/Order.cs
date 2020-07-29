@@ -1,7 +1,7 @@
 ﻿namespace OrderService.Models
 {
     /// <summary>
-    /// Order.
+    /// Order entity.
     /// </summary>
     public class Order
     {
@@ -13,7 +13,7 @@
 
         public decimal Price { get; set; }
 
-        public int ParcelLockerId { get; set; }
+        public int PostamatId { get; set; }
 
         public string CustomerPhoneNumber { get; set; }
 
