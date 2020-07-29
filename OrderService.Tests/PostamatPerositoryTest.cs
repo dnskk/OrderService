@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using OrderService.Application.Repositories;
 using OrderService.Database;
 using OrderService.Models;
