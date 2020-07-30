@@ -6,7 +6,7 @@ using OrderService.Models;
 namespace OrderService.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("[controller]")]
     public class PostamatController : ControllerBase
     {
         private readonly IPostamatRepository _postamatRepository;
